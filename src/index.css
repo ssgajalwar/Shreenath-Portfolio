@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Orbitron', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --color-void: #05070A;
+  --color-cyan: #4FD8E8;
+  --color-amber: #FFB454;
+  --color-hud: #E8F4F8;
+  --color-steel: #12181F;
+  --color-circuit: #2A5C7A;
+}
+
+body {
+  @apply bg-void text-hud font-sans;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-void;
+  border-left: 1px solid var(--color-circuit);
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-cyan/50;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-cyan;
+}
+
+.clip-bracket-top-left {
+  clip-path: polygon(0 10px, 10px 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.clip-bracket-bottom-right {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.animate-scanline {
+  animation: scanline 3s linear infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@media (pointer: fine) {
+  body, a, button, input, textarea, select {
+    cursor: none !important;
+  }
+}
